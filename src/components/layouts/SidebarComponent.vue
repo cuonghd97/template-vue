@@ -12,60 +12,80 @@
         </a>
       </p>
       <h5 class="centered">Marcel Newman</h5>
-      <li class="sub-menu nav-item">
+      <!-- UI Element -->
+      <li class="sub-menu" id="ui-element">
         <a
-          class="nav-link"
-          v-on:click="Expand('submenu')"
-          b-bind:class="{ collapsed: current_location != 'submenu' }"
+          id="is-active-link"
+          v-on:click="Expand('devices')"
+          v-bind:class="{ collapsed: current_location != 'devices', active: current_location == 'devices' }"
           data-toggle="collapse"
-          data-target="#collapeSubmenu"
+          data-target="#collapseTwo"
           aria-expanded="true"
-          aria-controls="collapeSubmenu"
+          aria-controls="collapseTwo"
         >
-          <span class="textnavbar" style="cursor: pointer;"><b>Components</b></span>
+          <span style="cursor: pointer;">UI Element</span>
         </a>
         <transition name="slide">
-          <div
+          <ul
             id="collapseTwo "
-            class="collapse show list"
+            class="show list sub"
             v-if="current_location == 'devices'"
             aria-labelledby="headingTwo"
             data-parent="#accordionSidebar"
           >
-            <div class="bg-white py-2 collapse-inner rounded">
-              <router-link class="nav-link" style="width: 100%;" active-class="active" to="/controller">
-                <span class="txtList"><b>Controller</b></span>
+            <li>
+              <router-link class="nav-link" style="width: 100%;" active-class="active" to="/general">
+                General
               </router-link>
               <router-link
                 class="nav-link"
                 active-class="active"
                 style="width: 100%;"
-                to="/detail/500cef19-b6c0-4bcc-90c5-b0f80fc4f694"
+                to="/button"
               >
-                <span class="txtList"><b>Access Point</b></span>
+                Button
               </router-link>
-            </div>
-          </div>
+            </li>
+          </ul>
         </transition>
       </li>
-      <!-- <li class="sub-menu">
-        <a href="#">
-          <font-awesome-icon icon='desktop' />
-          <span>Menu 1</span>
+      <!-- Component -->
+      <li class="sub-menu" id="component">
+        <a
+          id="is-active-link"
+          v-on:click="Expand('devices')"
+          v-bind:class="{ collapsed: current_location != 'devices', active: current_location == 'devices' }"
+          data-toggle="collapse"
+          data-target="#collapseTwo"
+          aria-expanded="true"
+          aria-controls="collapseTwo"
+        >
+          <span style="cursor: pointer;">Component</span>
         </a>
-        <ul class="sub">
-          <li>
-            <a href="#">Sub 1</a>
-          </li>
-          <li>
-            <a href="#">Sub 2</a>
-          </li>
-          <li>
-            <a href="#">Sub 3</a>
-          </li>
-
-        </ul>
-      </li> -->
+        <transition name="slide">
+          <ul
+            id="collapseTwo "
+            class="show list sub"
+            v-if="current_location == 'devices'"
+            aria-labelledby="headingTwo"
+            data-parent="#accordionSidebar"
+          >
+            <li>
+              <router-link class="nav-link" style="width: 100%;" active-class="active" to="/gallery">
+                Gallery
+              </router-link>
+              <router-link
+                class="nav-link"
+                active-class="active"
+                style="width: 100%;"
+                to="/todo-list"
+              >
+                Todo list
+              </router-link>
+            </li>
+          </ul>
+        </transition>
+      </li>
     </ul>
   </div>
 </template>
@@ -73,10 +93,41 @@
 <script>
 export default {
   name: 'sidebar-component',
+  props: ['show_sidebar'],
+  data: function() {
+    return {
+      current_location: "",
+      isDropped: false,
+      isActive: 1
+    }
+  },
+  methods: {
+    dropIt: function() {
+      this.isDropped = !this.isDropped
+    },
+    Expand: function(data) {
+      if (this.current_location == data) {
+        this.current_location = ""
+      } else {
+        this.current_location = data
+      }
+    }
+  }
 }
 </script>
 
 <style>
+  .list {
+    transform-origin: top;
+    transition: 0.3s;
+  }
+  .slide-enter,
+  .slide-leave-to {
+    transform: scaleY(0);
+  }
+  .active{
+    background: transparent;
+  }
   #sidebar {
     overflow: hidden !important;
     outline: none !important;
@@ -114,7 +165,7 @@ export default {
     position: relative;
   }
   ul.sidebar-menu li.sub-menu {
-    line-height: 15px;
+    line-height: 15px !important;
   }
   ul.sidebar-menu li {
     line-height: 20px !important;
@@ -125,7 +176,7 @@ export default {
   ul li {
     list-style: none;
   }
-  ul.sidebar-menu li a {
+  ul.sidebar-menu li #is-active-link {
     color: #aeb2b7;
     text-decoration: none;
     display: block;
@@ -146,9 +197,6 @@ export default {
     display: inline-block;
     margin: 0 0 0 5px;
   }
-  /*#sidebar > ul > li > ul.sub {
-    display: none;
-  }*/
   ul.sidebar-menu, ul.sidebar-menu li ul.sub {
     margin: -2px 0 0;
     padding: 0;
@@ -180,9 +228,15 @@ export default {
     transition: all 0.3s ease;
     color: #aeb2b7;
   }
-  .sub-menu > a.active, .sub-menu > a:hover, .sub-menu > a:focus {
-    background: #68dff0;
-    color: #fff;
+  .sub-menu {
+    cursor: pointer;
+  }
+  .sub-menu > a:hover {
+    color: #000 !important;
+  }
+  #is-active-link.active, #is-active-link:hover, #is-active-link:focus {
+    background: #68dff0 !important;
+    color: #000 !important;;
     display: block;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
@@ -194,14 +248,4 @@ export default {
     color: white;
     background: transparent;
   }
-  /*ul.sidebar-menu li > a.active, ul.sidebar-menu li > a:hover, ul.sidebar-menu li > a:focus {
-    background: #68dff0;
-    color: #fff;
-    display: block;
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-  }*/
 </style>

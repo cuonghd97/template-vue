@@ -6,7 +6,9 @@
     </section>
     <!-- Sidebar -->
     <aside>
-      <sidebar-component show_navbar="true"></sidebar-component>
+      <sidebar-component show_sidebar="true"></sidebar-component>
+      <router-view ></router-view>
+      <!-- <MenuItem show_navbar='true'></MenuItem> -->
     </aside>
   </div>
 </template>
@@ -20,7 +22,7 @@ export default {
   name: 'app',
   components: {
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
   },
   data() {
     return {
