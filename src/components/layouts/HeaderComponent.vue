@@ -1,9 +1,9 @@
 <template>
   <header class="header black-bg">
-    <div class="sidebar-toggle-box">
+    <div class="sidebar-toggle-box" v-on:click="toggleSidebar">
         <font-awesome-icon icon='bars'/>
     </div>
-  <a href="#" class="logo"><b>DASHGUM</b></a>
+  <a href="#" class="logo" id="logo"><b>DASHGUM</b></a>
   <div class="nav notify-row" id="top_menu">
   </div>
   <div class="top-menu">
@@ -17,6 +17,12 @@
 <script>
   export default {
     name: 'header-component',
+    props: ['isShowSidebar'],
+    methods: {
+      toggleSidebar: function() {
+        this.$emit('update:isShowSidebar', !this.isShowSidebar)
+      }
+    }
   }
 </script>
 
@@ -39,6 +45,7 @@
     float: left;
     padding-right: 15px;
     margin-top: 20px;
+    cursor: pointer;
   }
   a.logo {
     font-size: 24px;
@@ -53,6 +60,10 @@
   }
   a {
     background: transparent;
+  }
+  #logo {
+    text-decoration: none;
+    outline: none;
   }
   .nav > li {
     position: relative;

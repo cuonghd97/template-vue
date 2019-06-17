@@ -2,30 +2,34 @@
   <div id="app">
     <!-- Header -->
     <section id="container">
-       <header-component></header-component>
+       <header-component v-bind:isShowSidebar.sync='isShowSidebar'></header-component>
     </section>
     <!-- Sidebar -->
     <aside>
-      <sidebar-component show_sidebar="true"></sidebar-component>
-      <router-view ></router-view>
-      <!-- <MenuItem show_navbar='true'></MenuItem> -->
+      <sidebar-component v-bind:isShowSidebar.sync="isShowSidebar"></sidebar-component>
     </aside>
+    <!-- Main content -->
+    <router-view />
+    <!-- Footer -->
+    <footer-component></footer-component>
   </div>
 </template>
 
 <script>
-import HeaderComponent from './components/layouts/HeaderComponent.vue'
+import HeaderComponent from './components/layouts/HeaderComponent'
 import SidebarComponent from './components/layouts/SidebarComponent'
-// import MenuItem from './components/layouts/MenuItem'
+import FooterComponent from './components/layouts/FooterComponent'
 
 export default {
   name: 'app',
   components: {
     HeaderComponent,
     SidebarComponent,
+    FooterComponent,
   },
   data() {
     return {
+      isShowSidebar: true
     }
   },
 }

@@ -3,7 +3,7 @@
     id='sidebar'
     tabindex="5000"
     style="overflow: hidden; outline: none; margin-left: 0px;"
-    v-if="show_sidebar"
+    v-if="isShowSidebar"
   >
     <ul class="sidebar-menu" style="display: block">
       <p class="centered">
@@ -13,30 +13,40 @@
       </p>
       <h5 class="centered">Marcel Newman</h5>
       <!-- UI Element -->
-      <li class="sub-menu" id="ui-element">
+      <li class="sub-menu">
         <a
           id="is-active-link"
-          v-on:click="Expand('devices')"
-          v-bind:class="{ collapsed: current_location != 'devices', active: current_location == 'devices' }"
+          v-on:click="Expand('uielement')"
+          v-bind:class="{ collapsed: current_location != 'uielement', active: current_location == 'uielement' }"
           data-toggle="collapse"
           data-target="#collapseTwo"
           aria-expanded="true"
           aria-controls="collapseTwo"
         >
-          <span style="cursor: pointer;">UI Element</span>
+          <span style="cursor: pointer;">
+            <font-awesome-icon icon='desktop'></font-awesome-icon>
+            UI Element
+          </span>
         </a>
         <transition name="slide">
           <ul
             id="collapseTwo "
             class="show list sub"
-            v-if="current_location == 'devices'"
+            v-if="current_location == 'uielement'"
             aria-labelledby="headingTwo"
             data-parent="#accordionSidebar"
           >
             <li>
-              <router-link class="nav-link" style="width: 100%;" active-class="active" to="/general">
+              <router-link
+                class="nav-link"
+                style="width: 100%;"
+                active-class="active"
+                to="/"
+              >
                 General
               </router-link>
+            </li>
+            <li>
               <router-link
                 class="nav-link"
                 active-class="active"
@@ -50,30 +60,40 @@
         </transition>
       </li>
       <!-- Component -->
-      <li class="sub-menu" id="component">
+      <li class="sub-menu">
         <a
           id="is-active-link"
-          v-on:click="Expand('devices')"
-          v-bind:class="{ collapsed: current_location != 'devices', active: current_location == 'devices' }"
+          v-on:click="Expand('component')"
+          v-bind:class="{ collapsed: current_location != 'component', active: current_location == 'component' }"
           data-toggle="collapse"
           data-target="#collapseTwo"
           aria-expanded="true"
           aria-controls="collapseTwo"
         >
-          <span style="cursor: pointer;">Component</span>
+          <span style="cursor: pointer;">
+            <font-awesome-icon icon='icons'></font-awesome-icon>
+            Component
+          </span>
         </a>
         <transition name="slide">
           <ul
             id="collapseTwo "
             class="show list sub"
-            v-if="current_location == 'devices'"
+            v-if="current_location == 'component'"
             aria-labelledby="headingTwo"
             data-parent="#accordionSidebar"
           >
             <li>
-              <router-link class="nav-link" style="width: 100%;" active-class="active" to="/gallery">
-                Gallery
+              <router-link
+                class="nav-link"
+                style="width: 100%;"
+                active-class="active"
+                to="/general"
+              >
+                General
               </router-link>
+            </li>
+            <li>
               <router-link
                 class="nav-link"
                 active-class="active"
@@ -93,7 +113,7 @@
 <script>
 export default {
   name: 'sidebar-component',
-  props: ['show_sidebar'],
+  props: ['isShowSidebar'],
   data: function() {
     return {
       current_location: "",
