@@ -13,10 +13,12 @@
     "@fortawesome/vue-fontawesome": "^0.1.6",
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.0-rc.23",
+    "chart.js": "^2.8.0",
     "core-js": "^2.6.5",
     "vue": "^2.6.10",
+    "vue-chartjs": "^3.4.2",
     "vue-router": "^3.0.6",
-    "vue-sidebar-menu": "^3.9.0"
+    "vue2-datepicker": "^2.11.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.8.0",

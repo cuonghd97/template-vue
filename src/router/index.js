@@ -5,6 +5,7 @@ import ButtonComponent from '../components/pages/ButtonComponent'
 import GeneralComponent from '../components/pages/GeneralComponent'
 import TodoListComponent from '../components/pages/TodoListComponent'
 import UiElementComponent from '../components/pages/UiElementComponent'
+import ChartComponent from '../components/pages/ChartComponent'
 
 Vue.use(Router)
 
@@ -26,6 +27,10 @@ let router = new Router({
     {
       path: '/todo-list',
       component: TodoListComponent
+    },
+    {
+      path: '/chart',
+      component: ChartComponent
     }
   ]
 })

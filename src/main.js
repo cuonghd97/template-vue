@@ -4,7 +4,6 @@ import BootstrapVue from 'bootstrap-vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
 
 import router from './router'
 import 'bootstrap/dist/css/bootstrap.css'

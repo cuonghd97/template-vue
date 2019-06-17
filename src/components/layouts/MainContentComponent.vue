@@ -19,7 +19,7 @@
     name: 'main-content-component',
     components: {
       NotificationComponent
-    }
+    },
   }
 </script>
 

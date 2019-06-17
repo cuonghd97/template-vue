@@ -106,6 +106,18 @@
           </ul>
         </transition>
       </li>
+      <!-- Chart -->
+      <li class="sub-menu">
+        <router-link
+          id="is-active-link"
+          to='/chart'
+        >
+          <span style="cursor: pointer;">
+            <font-awesome-icon icon='icons'></font-awesome-icon>
+            Chart
+          </span>
+        </router-link>
+      </li>
     </ul>
   </div>
 </template>

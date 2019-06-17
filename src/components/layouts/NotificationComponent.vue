@@ -70,6 +70,6 @@
 
 <script>
   export default {
-    name: 'notification-component'
+    name: 'notification-component',
   }
 </script>
