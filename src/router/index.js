@@ -14,23 +14,33 @@ let router = new Router({
   routes: [
     {
       path: '/',
-      component: UiElementComponent
+      component: UiElementComponent,
+      name: 'ui-element',
+      props: true
     },
     {
       path: '/button',
-      component: ButtonComponent
+      component: ButtonComponent,
+      name: 'button',
+      props: true
     },
     {
       path: '/general',
-      component: GeneralComponent
+      component: GeneralComponent,
+      name: 'general',
+      props: true
     },
     {
       path: '/todo-list',
-      component: TodoListComponent
+      component: TodoListComponent,
+      name: 'todo-list',
+      props: true
     },
     {
       path: '/chart',
-      component: ChartComponent
+      component: ChartComponent,
+      name: 'chart',
+      props: true
     }
   ]
 })

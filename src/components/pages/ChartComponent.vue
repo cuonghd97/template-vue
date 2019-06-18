@@ -3,8 +3,8 @@
     <section class="wrapper">
       <b-row>
         <b-col col lg="12">
-          <div>
-            <span>Start date:
+          <div id="filter">
+            <span>Từ:
               <date-picker
                 format="YYYY-MM-DD"
                 lang="en"
@@ -13,7 +13,7 @@
                 placeholder="">
               </date-picker>
             </span>
-            <span>End date:
+            <span>Đến:
               <date-picker
                 format="YYYY-MM-DD"
                 lang="en"
@@ -22,9 +22,15 @@
                 placeholder="">
               </date-picker>
             </span>
-            <button v-on:click='fillData()'>Filter</button>
+            <b-button v-on:click='fillData()' variant="primary" size="sm">Tìm kiếm</b-button>
           </div>
-          <line-chart v-bind:chart-data='datacollection'></line-chart>
+          <div id="chart">
+            <line-chart
+              v-bind:chart-data='datacollection'
+              v-bind:options='chartOptions'
+              v-bind:style='{ height: "565px" }'
+            ></line-chart>
+          </div>
         </b-col>
       </b-row>
     </section>
@@ -32,15 +38,12 @@
 </template>
 
 <script>
-
-  import MainContentComponent from '../layouts/MainContentComponent'
   import LineChart from '../../chart'
   import DatePicker from 'vue2-datepicker'
 
   export default {
     name: 'chart-component',
     components: {
-      MainContentComponent,
       LineChart,
       DatePicker
     },
@@ -49,6 +52,10 @@
         datacollection: null,
         startDate: "2019-05-17",
         endDate: "2019-06-17",
+        chartOptions: {
+          responsive: true,
+          maintainAspectRatio: false
+        }
       }
     },
     mounted () {
@@ -68,7 +75,7 @@
         }
       },
       getRandomInt: function() {
-        return Array.from({length: 30}, () => Math.floor(Math.random() * 1000));
+        return Array.from({length: 100}, () => Math.floor(Math.random() * 1000));
       },
       getRandomDay: function() {
         let startDate = new Date(this.startDate); //YYYY-MM-DD
@@ -91,13 +98,19 @@
         return getDateArray(startDate, endDate);
       }
     },
-    watch: {
-      startDate: function(value) {
-        console.log(value)
-      },
-      endDate: function(value) {
-        console.log(value)
-      }
-    }
   }
 </script>
+
+<style>
+  #filter {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0 0 0;
+  }
+  #filter button, #filter span {
+    margin: 0 0 5px 5px;
+  }
+  #chart {
+    text-align: center;
+  }
+</style>

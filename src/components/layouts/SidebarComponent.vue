@@ -41,7 +41,7 @@
                 class="nav-link"
                 style="width: 100%;"
                 active-class="active"
-                to="/"
+                v-bind:to="{ name: 'ui-element' }"
               >
                 General
               </router-link>

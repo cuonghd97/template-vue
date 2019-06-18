@@ -11,7 +11,6 @@
     <!-- Main content -->
     <router-view />
     <!-- Footer -->
-    <footer-component></footer-component>
   </div>
 </template>
 

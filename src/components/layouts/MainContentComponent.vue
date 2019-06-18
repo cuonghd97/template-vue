@@ -1,7 +1,8 @@
 <template>
-  <section id="main-content">
+  <section id="main-content" v-bind:class="{ 'ml-0': isShowSidebar }">
     <section class="wrapper">
       <b-row>
+        <p>{{ isShowSidebar }}</p>
         <b-col col lg="9">
           <!-- Content page -->
           <slot></slot>
@@ -17,6 +18,7 @@
 
   export default {
     name: 'main-content-component',
+    props: ['isShowSidebar'],
     components: {
       NotificationComponent
     },
@@ -26,6 +28,9 @@
 <style>
   #main-content {
     margin-left: 210px;
+  }
+  .ml-0 {
+    margin-left: 0px;
   }
   .wrapper {
     display: inline-block;
