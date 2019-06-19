@@ -3,7 +3,7 @@
     id='sidebar'
     tabindex="5000"
     style="overflow: hidden; outline: none; margin-left: 0px;"
-    v-if="isShowSidebar"
+    v-show="isShowSidebar"
   >
     <ul class="sidebar-menu" style="display: block">
       <p class="centered">

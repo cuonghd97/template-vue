@@ -1,5 +1,5 @@
 <template>
-  <section id="main-content">
+  <section id="main-content" v-bind:class="{ 'ml-0': !isShowSidebar }">
     <section class="wrapper">
       <b-row>
         <b-col col lg="12">
@@ -40,6 +40,7 @@
 <script>
   import LineChart from '../../chart'
   import DatePicker from 'vue2-datepicker'
+  import EventBus from '../../event-bus'
 
   export default {
     name: 'chart-component',
@@ -49,6 +50,7 @@
     },
     data: function() {
       return {
+        isShowSidebar: true,
         datacollection: null,
         startDate: "2019-05-17",
         endDate: "2019-06-17",
@@ -60,6 +62,11 @@
     },
     mounted () {
       this.fillData()
+    },
+    created: function() {
+      EventBus.$on('ToggleSidebar', isShowSidebar => {
+        this.isShowSidebar = isShowSidebar
+      })
     },
     methods: {
       fillData: function() {
@@ -102,6 +109,9 @@
 </script>
 
 <style>
+  .ml-0 {
+    margin-left: 0px;
+  }
   #filter {
     display: flex;
     justify-content: center;

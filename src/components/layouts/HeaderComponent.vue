@@ -15,12 +15,16 @@
 </template>
 
 <script>
+  import EventBus from '../../event-bus'
+
   export default {
     name: 'header-component',
     props: ['isShowSidebar'],
     methods: {
       toggleSidebar: function() {
-        this.$emit('update:isShowSidebar', !this.isShowSidebar)
+        const isShowSidebar = this.isShowSidebar
+        this.$emit('update:isShowSidebar', !isShowSidebar)
+        EventBus.$emit('ToggleSidebar', !isShowSidebar)
       }
     }
   }

@@ -17,14 +17,12 @@
 <script>
 import HeaderComponent from './components/layouts/HeaderComponent'
 import SidebarComponent from './components/layouts/SidebarComponent'
-import FooterComponent from './components/layouts/FooterComponent'
 
 export default {
   name: 'app',
   components: {
     HeaderComponent,
     SidebarComponent,
-    FooterComponent,
   },
   data() {
     return {

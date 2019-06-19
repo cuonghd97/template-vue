@@ -1,8 +1,7 @@
 <template>
-  <section id="main-content" v-bind:class="{ 'ml-0': isShowSidebar }">
+  <section id="main-content" v-bind:class="{ 'ml-0': !isShowSidebar }">
     <section class="wrapper">
       <b-row>
-        <p>{{ isShowSidebar }}</p>
         <b-col col lg="9">
           <!-- Content page -->
           <slot></slot>
@@ -15,13 +14,23 @@
 
 <script>
   import NotificationComponent from './NotificationComponent'
+  import EventBus from '../../event-bus'
 
   export default {
     name: 'main-content-component',
-    props: ['isShowSidebar'],
+    data: function() {
+      return {
+        isShowSidebar: true
+      }
+    },
     components: {
       NotificationComponent
     },
+    created: function() {
+      EventBus.$on('ToggleSidebar', isShowSidebar => {
+        this.isShowSidebar = isShowSidebar
+      })
+    }
   }
 </script>
 
